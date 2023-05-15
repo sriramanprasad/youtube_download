@@ -1,7 +1,6 @@
 import streamlit as st
 from pytube import YouTube
 import tempfile
-import shutil
 
 st.set_page_config(
     page_title="Youtube Downloader",
