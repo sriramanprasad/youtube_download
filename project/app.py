@@ -4,7 +4,7 @@ import tempfile
 
 st.set_page_config(
     page_title="Youtube Downloader",
-    page_icon="https://th.bing.com/th/id/OIP.jwDYzu2PwRSHQbozEAwv7wAAAA?pid=ImgDet&rs=1",
+    page_icon="logo_nphi.png",
     layout="wide",
     initial_sidebar_state="expanded",
     
@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 
-st.markdown("<h1 style='text-align: center; color: red;'>Input URL Here</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: red; font-style:italic;'>NΦ UTube downloader</h1>", unsafe_allow_html=True)
 st.markdown(
         """
         <div class="footer">
@@ -38,7 +38,7 @@ st.markdown(
 
 
 
-link = st.text_input("",placeholder="https://www.youtube.com/..",label_visibility="collapsed")
+link = st.text_input("Paste your link here",placeholder="https://www.youtube.com/..",label_visibility="collapsed")
 
 #function for youtube link is valid or not
 def is_youtube(link):
@@ -59,7 +59,7 @@ if (is_youtube(link)):
     title=youtube_1.title
     st.write(title)
     st.image(youtube_1.thumbnail_url , width=200 )
-    out = st.selectbox("Which you want to download" , ('Audio','Video'))
+    out = st.selectbox("Select format" , ('Audio','Video'))
    
 
     #now for audio
@@ -72,7 +72,7 @@ if (is_youtube(link)):
         key_val = key_search(list_aud,strm)
         temp_dir = tempfile.mkdtemp()
         temp_file_path = temp_dir + f"/{title}.mp3"
-        print(temp_dir)
+        #print(temp_dir)
         audio[key_val].download(output_path=temp_dir,filename=f'{title}.mp3')#output_path=temp_dir,filename='audio')
         #st.download_button(label="Download" , data=file,file_name=audio.mp3)
         
