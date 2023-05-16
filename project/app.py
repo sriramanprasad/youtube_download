@@ -4,7 +4,7 @@ import tempfile
 
 st.set_page_config(
     page_title="Youtube Downloader",
-    page_icon="logo_nphi.png",
+    page_icon="./logo_nphi.png",
     layout="wide",
     initial_sidebar_state="expanded",
     
