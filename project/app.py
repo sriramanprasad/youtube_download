@@ -38,7 +38,7 @@ st.markdown(
 
 
 
-link = st.text_input("Paste your link here",placeholder="https://www.youtube.com/..",label_visibility="collapsed")
+link = st.text_input(label="Paste your link here",placeholder="https://www.youtube.com/..",label_visibility="collapsed")
 
 #function for youtube link is valid or not
 def is_youtube(link):
