@@ -16,7 +16,7 @@ st.markdown("<h1 style='text-align: center; color: red;'>Input URL Here</h1>", u
 st.markdown(
         """
         <div class="footer">
-            Made with ❤️ by <a href="https://www.linkedin.com/" target="_blank">Sourav</a>
+            Made with ❤️ by <a href="https://www.linkedin.com/in/sourav-bera-85a184218/" target="_blank">Sourav</a>
         </div>
 
         <style>
