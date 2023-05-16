@@ -65,43 +65,52 @@ if (is_youtube(link)):
     #now for audio
     if out == "Audio":
         audio = youtube_1.streams.filter(only_audio=True)
+        #print(list(audio))
         list_aud = {}
         for i in range(len(audio)):
             list_aud[i] = audio[i].abr
         strm = st.selectbox("Select Quality",(list_aud.values()))
+        
         key_val = key_search(list_aud,strm)
         temp_dir = tempfile.mkdtemp()
         temp_file_path = temp_dir + f"/{title}.mp3"
         #print(temp_dir)
-        audio[key_val].download(output_path=temp_dir,filename=f'{title}.mp3')#output_path=temp_dir,filename='audio')
+        if audio[key_val].download(output_path=temp_dir,filename=f'{title}.mp3'):#output_path=temp_dir,filename='audio')
         #st.download_button(label="Download" , data=file,file_name=audio.mp3)
-        
-        st.download_button(
-            label = "download",
-            data = open(temp_file_path,'rb').read(),
-            file_name=f'{title}.mp3',
-            mime='audio/mp3'
-        )
-        
-    elif out=="Video":
-            video = youtube_1.streams.all()
-            list_vid = {}
-            for i in range(len(video)):
-                if video[i].type == 'video':
-                    list_vid[i] = video[i].resolution
-
-
-            strm = st.selectbox("Select Quality",(list_vid.values()))
-            key_val = key_search(list_vid,strm)
-            temp_dir = tempfile.mkdtemp()
-            temp_file_path = temp_dir + f"/{title}.mp4"
-            
-            video[key_val].download(output_path=temp_dir,filename=f'{title}.mp4')#output_path=temp_dir,filename='audio')
-            
             st.download_button(
                 label = "download",
                 data = open(temp_file_path,'rb').read(),
-                file_name=f'{title}.mp4',
+                file_name=f'{title}.mp3',
+                mime='audio/mp3'
+            )
+        
+    elif out=="Video":
+        video = [stream for stream in youtube_1.streams if stream.includes_audio_track and stream.includes_video_track]
+
+        list_vid = {}
+        for i in range(len(video)):  
+            list_vid[i] = video[i].resolution
+            #print(video[i])
+        
+           
+
+        #print(list_vid)
+        strm = st.selectbox("Select Quality",(list_vid.values()))
+        key_val = key_search(list_vid,strm)
+        #print(video[key_val])
+        extension=video[key_val].mime_type.split('/')[1]
+
+        
+        
+        temp_dir = tempfile.mkdtemp()
+        temp_file_path = temp_dir + f"/{title}.{extension}"
+        
+        if video[key_val].download(output_path=temp_dir,filename=f'{title}.{extension}'):#output_path=temp_dir,filename='audio')
+        
+            st.download_button(
+                label = "download",
+                data = open(temp_file_path,'rb').read(),
+                file_name=f'{title}.{extension}',
                 mime='video/mp4'
             )
             
