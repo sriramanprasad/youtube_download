@@ -80,7 +80,7 @@ if (is_youtube(link)):
             st.download_button(
                 label = "download",
                 data = open(temp_file_path,'rb').read(),
-                file_name=f'{title}.mp3',
+                file_name=f'nphi-{title}.mp3',
                 mime='audio/mp3'
             )
         
@@ -110,7 +110,7 @@ if (is_youtube(link)):
             st.download_button(
                 label = "download",
                 data = open(temp_file_path,'rb').read(),
-                file_name=f'{title}.{extension}',
+                file_name=f'nphi-{title}.{extension}',
                 mime='video/mp4'
             )
             
